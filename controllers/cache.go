@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	filesave "gorm-gogo/filesave"
 	"gorm-gogo/storage"
 	"net/http"
@@ -42,7 +41,6 @@ func GetCache(w http.ResponseWriter, r *http.Request) {
 	if exists {
 		if value.Second < dayBefore {
 			delete(storage.Chache, key)
-			fmt.Println("after deletion--------------------", storage.Chache)
 			http.Error(w, "Key don't exists in chache", http.StatusBadRequest)
 			filesave.SaveDataToFile()
 			return
